@@ -1,9 +1,13 @@
-name: Build Pizza Shop
+name: peaceiris-action
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
+    name: Build pizza shop
     runs-on: ubuntu-latest
 
     steps:
@@ -27,9 +31,12 @@ jobs:
   deploy:
     name: Deploy
     needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
 
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+
+    runs-on: ubuntu-latest
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v3
@@ -40,5 +47,4 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
