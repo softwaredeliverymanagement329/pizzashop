@@ -1,0 +1,63 @@
+.bg-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-position: center;
+  object-fit: cover;
+  filter: grayscale(20%);
+  opacity: 0.4;
+  z-index: -1;
+}
+
+body {
+  padding: 2em;
+  color: hsl(0deg 14.9% 87.5%);
+  background-color: hsl(0deg 26% 43% / 50%);
+  border-left: hsl(0deg 92.71% 18.04%) solid 30px;
+  width: 100vw;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  border-bottom: hsl(0deg 92.71% 18.04%) solid 2px;
+  padding: 0.2em 0 0.6em 0;
+  margin: 0.2em 0 0.6em 0;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-top: hsl(0deg 92.71% 18.04%) solid 2px;
+  padding: 0.2em 0 0.6em 0;
+  margin: 2em 0 0.6em 0;
+}
+
+h2 {
+  margin: 0.4em 0 0.6em 0;
+}
+
+.logo {
+  height: 4em;
+  margin: 0 0.5em 0 0;
+}
+
+.delivery-box {
+  min-height: 4em;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 0.5em;
+  background-color: rgba(255, 255, 255, 0.842);
+}
+
+.count-text {
+  font-size: small;
+  font-style: italic;
+}
