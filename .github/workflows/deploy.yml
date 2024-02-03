@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # location of the coverage artifacts
-          path: "./coverage"
+          path: "./dist"
 
   deploy:
     if: github.ref == 'refs/heads/main'
