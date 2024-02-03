@@ -30,7 +30,7 @@ function App() {
         <NavLink to="/">
           <img className="logo" src="./pizza-shop-logo.png"></img>
         </NavLink>
-        <h1>Pizza Shop</h1>
+        <h1>Pizza Shop v2</h1>
       </header>
       <main>
         <Routes>
