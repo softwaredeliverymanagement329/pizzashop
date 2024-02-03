@@ -7,9 +7,11 @@ export function Order({ onOrder }) {
   const orderPizza = () => {
     let result = Math.random() < 0.9 ? "🍕" : "❌";
     setDeliveredPizzas(deliveredPizzas + result);
-    onOrder();
-    const x = makePizza("pep");
-    console.log(x);
+    if (result === "🍕") {
+      onOrder();
+      const x = makePizza("pep");
+      console.log(x);
+    }
   };
 
   const go = new Go();
