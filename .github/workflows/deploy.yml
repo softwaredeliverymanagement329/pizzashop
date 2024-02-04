@@ -27,16 +27,15 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update pages repo
-        # shell: bash
+        shell: bash
         working-directory: "site"
         run: |
           ls -la
-          # cd site
-          # date > generated.txt
-          # git config user.name github-actions
-          # git config user.email github-actions@github.com
-          # git add .
-          # git commit -m "generated"
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
       # git push
       # - run: ls -la site
 
