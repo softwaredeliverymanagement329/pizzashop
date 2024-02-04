@@ -42,6 +42,7 @@ jobs:
         working-directory: "production"
         run: |
           ls -la ..
+          cp -r ../dist/* .
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
