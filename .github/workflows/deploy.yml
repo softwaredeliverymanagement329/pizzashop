@@ -16,11 +16,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          repository: softwaredeliverymanagement329/softwaredeliverymanagement329.github.io
+          path: source
+          ref: "main"
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ secrets.CI_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+
+      - name: Build project
+        run: npm ci && npm run build
+
       - name: Checkout pages repo
         uses: actions/checkout@v4
         with:
           repository: softwaredeliverymanagement329/softwaredeliverymanagement329.github.io
-          path: site
+          path: production
           ref: "main"
           fetch-depth: 0
           persist-credentials: true
@@ -28,9 +46,9 @@ jobs:
 
       - name: Update pages repo
         shell: bash
-        working-directory: "site"
+        working-directory: "production"
         run: |
-          ls -la
+          ls -la ../production
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
@@ -38,17 +56,6 @@ jobs:
           git commit -m "generated"
           git push
       # - run: ls -la site
-
-      # - name: Checkout repo
-      #   uses: actions/checkout@v4
-
-      # - name: Setup Node
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: "20.x"
-
-      # - name: Build project
-      #   run: npm ci && npm run build
 
       # - name: Upload Artifact
       #   if: github.ref == 'refs/heads/main'
