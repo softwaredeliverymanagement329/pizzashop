@@ -5,7 +5,10 @@ on:
     branches:
       - main
 
-permissions: write-all
+permissions:
+  pages: write
+  id-token: write
+  contents: write
 
 jobs:
   build:
@@ -13,47 +16,55 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout tools repo
+      - name: Checkout pages repo
         uses: actions/checkout@v4
         with:
           repository: softwaredeliverymanagement329/softwaredeliverymanagement329.github.io
-          path: site
-      - run: |
+          path: "site"
+          ref: "main"
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ secrets.CI_TOKEN }}
+
+      - name: Update pages repo
+        shell: bash
+        working-directory: "site"
+        run: |
           cd site
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
           git commit -m "generated"
-          git push
-      - run: ls -la site
+      # git push
+      # - run: ls -la site
 
-        # - name: Checkout repo
-        #   uses: actions/checkout@v4
+      # - name: Checkout repo
+      #   uses: actions/checkout@v4
 
-        # - name: Setup Node
-        #   uses: actions/setup-node@v4
-        #   with:
-        #     node-version: "20.x"
+      # - name: Setup Node
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "20.x"
 
-        # - name: Build project
-        #   run: npm ci && npm run build
+      # - name: Build project
+      #   run: npm ci && npm run build
 
-        # - name: Upload Artifact
-        #   if: github.ref == 'refs/heads/main'
-        #   uses: actions/upload-pages-artifact@v3
-        #   with:
-        #     path: "./dist"
+      # - name: Upload Artifact
+      #   if: github.ref == 'refs/heads/main'
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: "./dist"
 
-        # - run: |
-        #     git clone https://github.com/softwaredeliverymanagement329/softwaredeliverymanagement329.github.io.git site
-        #     cd site
-        #     printf "Hello from actions" > index.html
-        #     git config user.name "GitHub Actions Bot"
-        #     git config user.email "actions@github.com"
-        #     git add .
-        #     git commit -m "Triggered by build"
-        #     git push
+      # - run: |
+      #     git clone https://github.com/softwaredeliverymanagement329/softwaredeliverymanagement329.github.io.git site
+      #     cd site
+      #     printf "Hello from actions" > index.html
+      #     git config user.name "GitHub Actions Bot"
+      #     git config user.email "actions@github.com"
+      #     git add .
+      #     git commit -m "Triggered by build"
+      #     git push
 
   # deploy:
   #   if: github.ref == 'refs/heads/main'
@@ -68,5 +79,6 @@ jobs:
   #     - name: Deploy to GitHub Pages
   #       id: deployment
   #       uses: actions/deploy-pages@v4
+
 #        git push https://${{ secrets.API_TOKEN_GITHUB }}@github.com/your-org/destination-repo.git HEAD:main
 
