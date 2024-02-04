@@ -5,10 +5,7 @@ on:
     branches:
       - main
 
-permissions:
-  pages: write
-  id-token: write
-  contents: write
+permissions: write-all
 
 jobs:
   build:
@@ -28,6 +25,7 @@ jobs:
           git config user.email github-actions@github.com
           git add .
           git commit -m "generated"
+          git push
       - run: ls -la site
 
         # - name: Checkout repo
