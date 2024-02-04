@@ -22,6 +22,15 @@ jobs:
           path: site
 
       - run: ls -la site
+
+      - run: |
+          cd site
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
         # - name: Checkout repo
         #   uses: actions/checkout@v4
 
@@ -62,5 +71,6 @@ jobs:
   #     - name: Deploy to GitHub Pages
   #       id: deployment
   #       uses: actions/deploy-pages@v4
+
 #        git push https://${{ secrets.API_TOKEN_GITHUB }}@github.com/your-org/destination-repo.git HEAD:main
 
