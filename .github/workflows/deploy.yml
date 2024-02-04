@@ -20,9 +20,6 @@ jobs:
         with:
           repository: softwaredeliverymanagement329/softwaredeliverymanagement329.github.io
           path: site
-
-      - run: ls -la site
-
       - run: |
           cd site
           date > generated.txt
@@ -31,6 +28,8 @@ jobs:
           git add .
           git commit -m "generated"
           git push
+      - run: ls -la site
+
         # - name: Checkout repo
         #   uses: actions/checkout@v4
 
@@ -71,6 +70,5 @@ jobs:
   #     - name: Deploy to GitHub Pages
   #       id: deployment
   #       uses: actions/deploy-pages@v4
-
 #        git push https://${{ secrets.API_TOKEN_GITHUB }}@github.com/your-org/destination-repo.git HEAD:main
 
