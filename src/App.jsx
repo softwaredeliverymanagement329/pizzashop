@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import './app.css';
 import { Route, Routes, NavLink } from 'react-router-dom';
 import { Home } from './components/home/home';
 import { Login } from './components/login/login';
@@ -29,7 +29,7 @@ function App() {
         <NavLink to='/'>
           <img className='logo' src='./pizza-shop-logo.png'></img>
         </NavLink>
-        <h1>Pizza Shop v7</h1>
+        <h1>Pizza Shop</h1>
       </header>
       <main>
         <Routes>
