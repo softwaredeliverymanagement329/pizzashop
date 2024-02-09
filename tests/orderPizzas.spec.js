@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('testWelcomeButton', async ({ page }) => {
   // Navigate to the home page
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   // Get started on the homepage
   await expect(page).toHaveTitle('Pizza Shop');
