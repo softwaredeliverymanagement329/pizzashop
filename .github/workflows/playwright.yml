@@ -17,8 +17,12 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Start server
-        run: npm run dev
+      - name: Start server in separate process
+        run: |
+          npm run preview &
+          echo "SERVER_RUNNING" >> server_status.txt
+      - name: Wait for server to start
+        run: while [ ! -f server_status.txt ]; do sleep 1; done
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
