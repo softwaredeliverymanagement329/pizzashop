@@ -26,10 +26,6 @@ jobs:
       - name: Build project
         run: npm ci && npm run build
 
-  test:
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
-    steps:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
       - name: Run Playwright tests
@@ -41,11 +37,6 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-  deploy:
-    name: Build pizza shop
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout pages repo
         uses: actions/checkout@v4
         with:
@@ -67,4 +58,4 @@ jobs:
           git config user.email github-actions@github.com
           git add .
           git commit -m "generated"
-          git push
+          git push]
